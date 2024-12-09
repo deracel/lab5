@@ -17,7 +17,7 @@ int main (int argc, char **argv)
     int index;
     int c;
     opterr = 0;
-    int ncars;
+    int ncars = 0;
 
     while ((c = getopt (argc, argv, "r:w:s:f:t:")) != -1)
         switch (c){
@@ -56,20 +56,24 @@ int main (int argc, char **argv)
         scanf("%d", &n);
         printf("\n");
         arr = realloc(arr, n * sizeof(tcar));
+        ncars = n;
         for (int i = 0; i < n; ++i)
             input_std(i, arr);
     }
-    else if (strcmp(rvalue, "txt") == 0)
-        /*input_txt();*/;
+
+    else if (strcmp(rvalue, "txt") == 0){
+        input_txt (&ncars, arr);
+    }
     else if (strcmp(rvalue, "bin") == 0)
         /*input_bin();*/;
     else
         printf("Incorrect option for rvalue\n");
 
     if (strcmp(wvalue, "std") == 0)
-        output_std(n, arr);
+        output_std(ncars, arr);
+
     else if (strcmp(wvalue, "txt") == 0)
-        /*output_txt();*/;
+        output_txt(ncars, arr);
     else if (strcmp(wvalue, "bin") == 0)
         /*output_bin();*/;
     else

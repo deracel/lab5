@@ -22,4 +22,33 @@ void input_std(int i, tcar* arr){
     printf("Enter the mileage of car %d: ", i + 1);
     scanf("%f", &arr[i].mileage);
     printf("\n");
+}
+
+void input_txt(int* ncars, tcar* arr){
+    char* filename = "input.txt";
+    FILE *f = fopen(filename, "r");
+    if (f == NULL){
+        printf("Error with opening file\n");
     }
+    char symbol;
+    int kol = 0;
+    while ((symbol = fgetc(f)) != EOF){
+        if (symbol == ';')
+            kol++;
+    }
+    *ncars = kol;
+    rewind(f);
+    printf("%d\n\n", *ncars);
+    for (int i = 0; i < *ncars; ++i){    
+        arr[i].model = malloc(N * sizeof(tcar));
+        fscanf(f, "%s ", arr[i].model);
+
+        arr[i].owner = malloc(N * sizeof(tcar));
+        fscanf(f, "%s ", arr[i].owner);
+
+        fscanf(f, "%f;", &arr[i].mileage);
+    }
+
+
+    fclose(f);
+}

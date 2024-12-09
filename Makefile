@@ -3,11 +3,8 @@ CFALGS = -c -Wall
 
 all: example
 
-example: choose.o prog1.o input.o output.o
-	$(CC) choose.o prog1.o input.o output.o -o example
-
-choose.o: choose.c
-	$(CC) $(CFALGS) choose.c
+example: prog1.o input.o output.o
+	$(CC) prog1.o input.o output.o -o example
 
 prog1.o: prog1.c
 	$(CC) $(CFALGS) prog1.c
