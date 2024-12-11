@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lib.h"
 
 void output_std(int ncars, tcar* arr){
@@ -25,6 +26,32 @@ void output_txt(int ncars, tcar* arr){
         fprintf(f, "%.2f;\n", arr[i].mileage);
     }
     /*printf(f, "\n");*/
+    for (int i = 0; i < ncars; i++){
+        free(arr[i].model);
+        free(arr[i].owner);
+    }
+    free(arr);
+    fclose(f);
+}
+char space[] = {" "};
+char delim[] = {";\n"};
+
+int lenmodel;
+int lenowner;
+void output_bin(int ncars, tcar* arr){
+    char* filename = "outputbin.txt";
+    FILE *f = fopen(filename, "ab");
+    for (int i = 0; i < ncars; ++i){
+        lenmodel = strlen(arr[i].model);
+        fwrite(arr[i].model, lenmodel, sizeof(char), f);
+        fwrite(space, 1, sizeof(char), f);
+        lenowner = strlen(arr[i].owner);
+        fwrite(arr[i].owner, lenowner, sizeof(char), f);
+        fwrite(space, 1, sizeof(char), f);
+        fwrite(&arr[i].mileage, 2, sizeof(float), f);
+        fwrite(delim, 2, sizeof(char), f);
+        
+    }
     for (int i = 0; i < ncars; i++){
         free(arr[i].model);
         free(arr[i].owner);

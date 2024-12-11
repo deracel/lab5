@@ -38,18 +38,24 @@ int main (int argc, char **argv)
                 break;
             
             case '?':
-                if (rvalue == NULL || wvalue == NULL || svalue == NULL || fvalue == NULL || tvalue == NULL)
-                    {fprintf (stderr, "Incorrect input, not all options or option characters are entered\n"); break;}
-                else if (isprint (optopt))
+                if (isprint (optopt))
                     fprintf (stderr, "Unknown option `-%c'.\n", optopt);
         return 1;
         default:
         abort ();
     }
     if (rvalue == NULL || wvalue == NULL || svalue == NULL || fvalue == NULL || tvalue == NULL)
-        {fprintf (stderr, "Incorrect input, not all options or option characters are entered\n"); return 0;}
+        {fprintf (stderr, "Incorrect input, not all options or option characters are entered\n"); free(arr); return 0;}
     printf ("rvalue = %s, wvalue = %s, svalue = %s, fvalue = %s, tvalue = %s \n", 
         rvalue, wvalue, svalue, fvalue, tvalue);
+    if ((strcmp(rvalue, "std") != 0&&strcmp(rvalue, "txt") != 0&&strcmp(rvalue, "bin") != 0)||
+        (strcmp(wvalue, "std") != 0&&strcmp(wvalue, "txt") != 0&&strcmp(wvalue, "bin") != 0)||
+        (strcmp(svalue, "qui") != 0&&strcmp(svalue, "sel") != 0)||
+        (strcmp(fvalue, "mod") != 0&&strcmp(fvalue, "own") != 0&&strcmp(fvalue, "mil") != 0)||
+        (strcmp(tvalue, "up") != 0&&strcmp(tvalue, "down") != 0))
+            {printf("Incorrect option for value\n");
+            printf("\nOptions for values:\nrvalue: std, txt, bin\nwvalue: std, txt, bin\nswalue: qui, sel\nfvalue: mod, own, mil\ntvalue: up, down\n\n"); free(arr);
+            return 0;}
 
     if (strcmp(rvalue, "std") == 0){
         printf("Enter the number of cars: ");
@@ -65,9 +71,15 @@ int main (int argc, char **argv)
         input_txt (&ncars, arr);
     }
     else if (strcmp(rvalue, "bin") == 0)
-        /*input_bin();*/;
+        input_bin(&ncars, arr);
     else
         printf("Incorrect option for rvalue\n");
+
+
+
+    if (strcmp(svalue, "sel") == 0){
+        selection_sort(arr, ncars, tvalue, fvalue);
+    }
 
     if (strcmp(wvalue, "std") == 0)
         output_std(ncars, arr);
@@ -75,10 +87,14 @@ int main (int argc, char **argv)
     else if (strcmp(wvalue, "txt") == 0)
         output_txt(ncars, arr);
     else if (strcmp(wvalue, "bin") == 0)
-        /*output_bin();*/;
+        output_bin(ncars, arr);
     else
         printf("Incorrect option for wvalue\n");
-    
+
+    /*if (strcmp(svalue, "sel") == 0){
+        selection_for_mileage(arr, ncars);
+    }*/
+        
     if (strcmp(svalue, "qui") != 0 && strcmp(svalue, "sel") != 0)
         printf ("Unknown option for sort\n");
     if (strcmp(fvalue, "mod") != 0 && strcmp(fvalue, "own") != 0 && strcmp(fvalue, "mil") != 0)
