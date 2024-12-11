@@ -1,10 +1,10 @@
-Hyundai_Solaris Kozlov 897.63;
-Kia_Rio Denisov 672.34;
-Renault_Logan Volkov 435.87;
-Toyota_Camry Ivanov 324.56;
-Chevrolet_Niva Sokolov 278.45;
-Ford_Focus Smith 256.98;
 BMW_X5 Petrov 192.75;
-Opel_Astra Antonov 156.28;
+Kia_Rio Denisov 672.34;
 Volkswagen_Polo Sidorov 98.23;
+Renault_Logan Volkov 435.87;
+Hyundai_Solaris Kozlov 897.63;
+Ford_Focus Smith 256.98;
+Opel_Astra Antonov 156.28;
+Toyota_Camry Ivanov 324.56;
 Lada_Granta Kuznetsov 54.12;
+Chevrolet_Niva Sokolov 278.45;
