@@ -1,0 +1,4 @@
+quick	arrays = 1000	0.000169 μs
+quick	arrays = 10000	0.003414 μs
+quick	arrays = 1	0.000001 μs
+quick	arrays = 1	0.000002 μs

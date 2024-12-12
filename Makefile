@@ -3,10 +3,10 @@ CFALGS = -c -Wall
 
 all: example
 
-example: prog1.o input.o output.o sort.o
-	$(CC) prog1.o input.o output.o sort.o -o example
+example: prog2.o input.o output.o sort.o
+	$(CC) prog2.o input.o output.o sort.o -o example
 
-prog1.o: prog1.c
+prog1.o: prog2.c
 	$(CC) $(CFALGS) prog1.c
 
 input.o: input.c
